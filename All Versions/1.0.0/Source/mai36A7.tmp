@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://dq3kocnxq0xtn"]
+
+[ext_resource type="Script" path="res://Blocks.gd" id="1_rnrs5"]
+
+[node name="Main" type="Node2D"]
+
+[node name="Camera" type="Camera2D" parent="."]
+
+[node name="Blocks" type="Node2D" parent="."]
+script = ExtResource("1_rnrs5")

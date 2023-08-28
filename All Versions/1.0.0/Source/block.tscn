@@ -1,0 +1,70 @@
+[gd_scene load_steps=10 format=3 uid="uid://dtobxyw84wfwm"]
+
+[ext_resource type="Script" path="res://block.gd" id="1_nscjn"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dypus"]
+size = Vector2(40, 40)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lkcub"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0f4ca"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_85bp6"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2j8c6"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_hxiu7"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_5hxwf"]
+radius = 32.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uk34b"]
+size = Vector2(40, 40)
+
+[node name="Block" type="StaticBody2D"]
+script = ExtResource("1_nscjn")
+
+[node name="Colour" type="ColorRect" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Number" type="Label" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 15
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MouseHeld" type="Area2D" parent="."]
+metadata/_edit_lock_ = true
+metadata/_edit_group_ = true
+
+[node name="MouseHeldCollider" type="CollisionShape2D" parent="MouseHeld"]
+position = Vector2(20, 20)
+shape = SubResource("RectangleShape2D_dypus")
+metadata/_edit_lock_ = true
+
+[node name="Click" type="Button" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_styles/normal = SubResource("StyleBoxEmpty_lkcub")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_0f4ca")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_85bp6")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_2j8c6")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_hxiu7")
+flat = true
+
+[node name="NeighbourCollider" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="NeighbourCollider"]
+position = Vector2(20, 20)
+shape = SubResource("CircleShape2D_5hxwf")
+
+[node name="BlockCollider" type="CollisionShape2D" parent="."]
+position = Vector2(20, 20)
+shape = SubResource("RectangleShape2D_uk34b")
+
+[connection signal="mouse_entered" from="MouseHeld" to="." method="_on_area_2d_mouse_entered"]
+[connection signal="button_down" from="Click" to="." method="_on_click_button_down"]
+[connection signal="body_shape_entered" from="NeighbourCollider" to="." method="_on_neighbour_collider_body_shape_entered"]
