@@ -1,3 +1,4 @@
+# ChangeLog
 - Made is so an impossible maze never generates (this is false)
 
 - Added an option to allow going in diagonals
